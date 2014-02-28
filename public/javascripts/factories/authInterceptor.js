@@ -17,11 +17,11 @@ define(function(){
 					}
 					return response || $q.when(response);
 				},
-				responseError: function(response) {
-					if(response.status == 401) {
-						return $location.path('/');
+				responseError: function(rejection) {
+					if(rejection.status == 401 && rejection.config.url.indexOf('/api') === 0) {
+						$location.path('/');
 					}
-					return response || $q.when(response);
+					return $q.reject(rejection)
 				}
 			};
 		}

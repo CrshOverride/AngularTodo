@@ -9,9 +9,15 @@ define(function(){
 					if($window.sessionStorage.token) {
 						config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
 					}
-					return config;
+					return config || $q.when(config);
 				},
 				response: function(response) {
+					if(response.status == 401) {
+						return $location.path('/');
+					}
+					return response || $q.when(response);
+				},
+				responseError: function(response) {
 					if(response.status == 401) {
 						return $location.path('/');
 					}

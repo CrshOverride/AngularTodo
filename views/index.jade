@@ -1,7 +1,5 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-
-  p Testing Continuous Integartion with GitHub
+  div(class='container', id='todo-app-container')
+    div(data-ng-view='')

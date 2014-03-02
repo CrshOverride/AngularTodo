@@ -24,11 +24,11 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	app.delete('/api/todos', function(req, res) {
+	app.delete('/api/todos/:item', function(req, res) {
 		User.findOne({ 'local.email': req.user.email }, function(err, user) {
 			if(err) return res.json(500, err);
 			if(!user) return res.json(500, { message: 'Invalid user!' });
-			user.items.splice(user.items.indexOf(req.body.item), 1);
+			user.items.splice(user.items.indexOf(req.params.item), 1);
 			user.save(function(err) {
 				if(err) {
 					return res.json(500, err);

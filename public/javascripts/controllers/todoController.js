@@ -15,7 +15,7 @@ define(function() {
 			};
 
 			$scope.deleteTodo = function(todo) {
-				$http.delete('/api/todos', { item: todo })
+				$http.delete('/api/todos/' + todo)
 					.success(function(res) {
 						$scope.getData();
 					})

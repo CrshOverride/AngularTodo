@@ -1,7 +1,7 @@
 var User = require('../models/user');
 
-module.exports = function(app, passport) {
-	app.get('/api/todos', function(req, res) {
+module.exports = function(app, cors, passport) {
+	app.get('/api/todos', cors(), function(req, res) {
 		User.findOne({ 'local.email': req.user.email }, function(err, user) {
 			if(err) return res.json(500, err);
 			if(!user) return res.json(500, { message: 'Invalid user!' });
@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	app.post('/api/todos', function(req, res) {
+	app.post('/api/todos', cors(), function(req, res) {
 		User.findOne({ 'local.email': req.user.email }, function(err, user) {
 			if(err) return res.json(500, err);
 			if(!user) return res.json(500, { message: 'Invalid user!' });
@@ -24,7 +24,7 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	app.delete('/api/todos/:item', function(req, res) {
+	app.delete('/api/todos/:item', cors(), function(req, res) {
 		User.findOne({ 'local.email': req.user.email }, function(err, user) {
 			if(err) return res.json(500, err);
 			if(!user) return res.json(500, { message: 'Invalid user!' });

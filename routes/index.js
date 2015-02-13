@@ -1,13 +1,13 @@
-module.exports = function(app, passport, jwt, secret) {
-	app.post('/add-user', function(req, res, next) {
+module.exports = function(app, cors, passport, jwt, secret) {
+	app.post('/add-user', cors(), function(req, res, next) {
 		passport.authenticate('local-signup', function(err, user, info) {
 			if(err) return res.json(500, { error: err });
 			else if(!user) return res.json({ success: false, message: info });
-			else return res.json({ success: true });			
+			else return res.json({ success: true });
 		})(req, res, next);
 	});
 
-	app.post('/authenticate', function(req, res, next) {
+	app.post('/authenticate', cors(), function(req, res, next) {
 		passport.authenticate('local-login', function(err, user, info) {
 			var token;
 			if(err) return res.json(500, { error: err });

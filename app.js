@@ -4,6 +4,7 @@
  */
 
 var express = require('express');
+var cors = require('cors');
 var routes = require('./routes/index.js');
 var apiRoutes = require('./routes/api.js');
 var http = require('http');
@@ -47,8 +48,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-apiRoutes(app, passport);
-routes(app, passport, jwt, secret);
+apiRoutes(app, cors, passport);
+routes(app, cors, passport, jwt, secret);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

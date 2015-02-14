@@ -4,7 +4,7 @@ define(function() {
 	TodoController = (function() {
 		function TodoController($scope, $http) {
 			$scope.createTodo = function() {
-				$http.post('/api/todos', { item: $scope.newTodo })
+				$http.post('/api/todos', { todo: { text: $scope.newTodo } })
 					.success(function(res) {
 						$scope.newTodo = '';
 						$scope.getData();

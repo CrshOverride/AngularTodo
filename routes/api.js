@@ -13,7 +13,7 @@ module.exports = function(app, cors, passport) {
 		User.findOne({ 'local.email': req.user.email }, function(err, user) {
 			if(err) return res.json(500, err);
 			if(!user) return res.json(500, { message: 'Invalid user!' });
-			user.items.push(req.body.item);
+			user.items.push(req.body.todo.text);
 			user.save(function(err) {
 				if(err) {
 					return res.json(500, err);

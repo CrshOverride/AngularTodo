@@ -2,8 +2,8 @@ module.exports = function(app, cors, passport, jwt, secret) {
 	app.post('/add-user', cors(), function(req, res, next) {
 		passport.authenticate('local-signup', function(err, user, info) {
 			if(err) return res.json(500, { error: err });
-			else if(!user) return res.json({ success: false, message: info });
-			else return res.json({ success: true, message: info });
+			else if(!user) return res.json(422, { success: false, message: info });
+			else return res.json({ success: true });
 		})(req, res, next);
 	});
 

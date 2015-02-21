@@ -3,19 +3,23 @@ require.config({
 		'domReady': '/javascripts/lib/domReady',
 		'angular': '//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min',
 		'ngRoute': '//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route',
-		'ngResource': '//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-resource'
+		'ngResource': '//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-resource',
+		'faye': '/javascripts/lib/faye-browser'
 	},
 	shim: {
-		'angular': { 
-			exports: 'angular' 
+		'angular': {
+			exports: 'angular'
 		},
-		'ngRoute': { 
+		'ngRoute': {
 			deps: ['angular'],
 			exports: 'ngRoute'
 		},
-		'ngResource': { 
+		'ngResource': {
 			deps: ['angular'],
-			exports: 'ngResource' 
+			exports: 'ngResource'
+		},
+		'faye': {
+			exports: 'faye'
 		}
 	},
 	deps: ['./bootstrap']

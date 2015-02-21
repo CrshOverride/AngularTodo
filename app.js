@@ -13,6 +13,7 @@ var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var passport = require('passport');
 var mongoose = require('mongoose');
+var faye = require('faye');
 
 var app = express();
 
@@ -52,6 +53,11 @@ if ('development' == app.get('env')) {
 apiRoutes(app, cors, passport);
 routes(app, cors, passport, jwt, secret);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app);
+var bayeux = new faye.NodeAdapter({mount: '/faye', timeout: 45});
+
+bayeux.attach(server);
+
+server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

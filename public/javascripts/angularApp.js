@@ -3,14 +3,12 @@ define(['routes',
 	'controllers/loginController',
 	'controllers/signupController',
 	'controllers/todoController',
-	'faye',
 	'angular',
 	'ngResource',
-	'ngRoute'],
-	function(Routes, AuthInterceptor, LoginController, SignupController, TodoController, Faye, Angular) {
+	'ngRoute',
+	'faye'],
+	function(Routes, AuthInterceptor, LoginController, SignupController, TodoController) {
 		var app;
-
-		debugger;
 
 		app = angular.module('todoApp', ['ngResource', 'ngRoute']);
 

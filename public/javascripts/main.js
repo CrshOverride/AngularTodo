@@ -4,7 +4,7 @@ require.config({
 		'angular': '//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min',
 		'ngRoute': '//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route',
 		'ngResource': '//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-resource',
-		'faye': '/javascripts/lib/faye-browser'
+		'faye': '/faye/client'
 	},
 	shim: {
 		'angular': {

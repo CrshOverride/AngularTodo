@@ -7,7 +7,7 @@ define(['routes',
 	'angular',
 	'ngResource',
 	'ngRoute'],
-	function(Routes, AuthInterceptor, LoginController, SignupController, TodoController, Faye) {
+	function(Routes, AuthInterceptor, LoginController, SignupController, TodoController, Faye, Angular) {
 		var app;
 
 		debugger;

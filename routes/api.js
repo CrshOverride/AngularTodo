@@ -19,7 +19,7 @@ module.exports = function(app, cors, passport, bayeux) {
 					return res.json(500, err);
 				}
 
-				bayeux.getClient().publish('/todos/' + req.user.email, {
+				bayeux.getClient().publish('/todos/' + req.user.email.replace(/[@\\.]/g, ''), {
 					action: 'create',
 					todo: req.body.todo.text
 				});

@@ -19,10 +19,12 @@ module.exports = function(app, cors, passport, bayeux) {
 					return res.json(500, err);
 				}
 
-				bayeux.getClient().publish('/todos/' + req.user.email.replace(/[@\\.]/g, ''), {
+				bayeux.getClient().publish('/' + req.user.email.replace(/[@\\.]/g, ''), {
+					type: 'todo',
 					action: 'create',
-					todo: req.body.todo.text
+					entity: req.body.todo.text
 				});
+
 				return res.json({ success: true });
 			});
 		});
@@ -37,6 +39,12 @@ module.exports = function(app, cors, passport, bayeux) {
 				if(err) {
 					return res.json(500, err);
 				}
+
+				bayeux.getClient().publish('/' + req.user.email.replace(/[@\\.]/g, ''), {
+					type: 'todo',
+					action: 'delete',
+					entity: req.params.item
+				});
 
 				return res.json({ success: true });
 			})

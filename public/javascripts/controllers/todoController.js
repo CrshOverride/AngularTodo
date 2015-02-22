@@ -37,7 +37,7 @@ define(['faye'], function() {
 			// Wire up Faye to listen for new tasks
 			var fayeClient = new Faye.Client('/faye');
 
-			fayeClient.subscribe('/todos/' + $window.sessionStorage.email.replace(/[@\\.]/g, ''), function(todo) {
+			fayeClient.subscribe('/' + $window.sessionStorage.email.replace(/[@\\.]/g, ''), function(message) {
 				$scope.$apply($scope.getData);
 			});
 

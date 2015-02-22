@@ -1,6 +1,6 @@
 var User = require('../models/user');
 
-module.exports = function(app, cors, passport) {
+module.exports = function(app, cors, passport, bayeux) {
 	app.get('/api/todos', cors(), function(req, res) {
 		User.findOne({ 'local.email': req.user.email }, function(err, user) {
 			if(err) return res.json(500, err);
@@ -19,8 +19,12 @@ module.exports = function(app, cors, passport) {
 					return res.json(500, err);
 				}
 
+				bayeux.getClient().publish('/todos/' + req.user.email, {
+					action: 'create',
+					todo: req.body.todo.text
+				});
 				return res.json({ success: true });
-			})
+			});
 		});
 	});
 

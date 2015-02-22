@@ -10,7 +10,7 @@
 		<div data-ng-if="!todos || todos.length === 0">You've got nothing to do...but relax!</div>
 
 		<!-- LOOP OVER THE TODOS IN $scope.todos -->
-		<div class="checkbox" data-ng-repeat="todo in todos">
+		<div class="checkbox" data-ng-repeat="todo in todos track by $index">
 			<label>
 				<input type="checkbox" data-ng-click="deleteTodo(todo)"> {{ todo }}
 			</label>

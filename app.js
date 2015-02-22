@@ -16,6 +16,7 @@ var mongoose = require('mongoose');
 var faye = require('faye');
 
 var app = express();
+var bayeux = new faye.NodeAdapter({mount: '/faye', timeout: 45});
 
 // config elements
 var dbConfig = require('./config/database.js');
@@ -50,11 +51,10 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-apiRoutes(app, cors, passport);
+apiRoutes(app, cors, passport, bayeux);
 routes(app, cors, passport, jwt, secret);
 
 var server = http.createServer(app);
-var bayeux = new faye.NodeAdapter({mount: '/faye', timeout: 45});
 
 bayeux.attach(server);
 

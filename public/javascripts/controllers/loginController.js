@@ -7,6 +7,7 @@ define(function() {
 				$http.post('/authenticate', { email: $scope.email, password: $scope.password })
 					.success(function(res) {
 						if(res.success) {
+							$window.sessionStorage.email = $scope.email;
 							$window.sessionStorage.token = res.token;
 							$location.path('/todo');
 						} else {

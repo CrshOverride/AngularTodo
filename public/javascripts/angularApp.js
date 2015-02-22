@@ -5,8 +5,7 @@ define(['routes',
 	'controllers/todoController',
 	'angular',
 	'ngResource',
-	'ngRoute',
-	'faye'],
+	'ngRoute'],
 	function(Routes, AuthInterceptor, LoginController, SignupController, TodoController) {
 		var app;
 
@@ -26,7 +25,7 @@ define(['routes',
 		// Add our controllers to the module
 		app.controller('loginController', ['$scope', '$location', '$http', '$window', LoginController]);
 		app.controller('signupController', ['$scope', '$routeParams', '$http', '$location', SignupController]);
-		app.controller('todoController', ['$scope', '$http', TodoController]);
+		app.controller('todoController', ['$scope', '$http', '$window', TodoController]);
 
 		return app;
 	}
